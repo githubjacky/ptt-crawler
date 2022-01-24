@@ -83,6 +83,7 @@ def main():
 
         print('-------------------------------------')
         limited_post = int(input('please type the number of posts that you want to limit(type 0 if you do not want to limit)\n> '))
+        if limited_post != 0: fileName += f'_{limited_post}'
 
         print('-------------------------------------')
         print('start crawling...')
@@ -99,7 +100,7 @@ def main():
         print('-------------------------------------')
         print('start crawling...')
         result = crawler.parse_article_newest(newest) if index == 0 else crawler.parse_article_newest(newest, index)
-        fileName += f'_{index}'
+        if index != 0: fileName += f'_{index}'
 
     print('-------------------------------------')
     output_type = input('crawler end...what type of file do you wnat to output 0)json  1)excel  2)pdf\n> ')

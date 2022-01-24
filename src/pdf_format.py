@@ -40,9 +40,7 @@ class PDF(FPDF):
     def paragraph_body(self, item):
         sub_title = item[0]
         paragraph = item[1]
-        if isinstance(paragraph, int):
-            paragraph = str(paragraph)
-        if len(paragraph) != 0:
+        if (not isinstance(paragraph, list)) or (isinstance(paragraph, list) and len(paragraph) != 0):
             # subtitle
             # self.add_font('cf', '', 'C:\\Windows\\Fonts\\kaiu.ttf', uni=True)
             self.set_font('cf', size=12)
@@ -56,4 +54,4 @@ class PDF(FPDF):
                     self.multi_cell(0, 5, content, ln=1)
             else:
                 self.set_text_color(59, 66, 82)
-                self.multi_cell(0, 5, paragraph, ln=1)
+                self.multi_cell(0, 5, str(paragraph), ln=1)

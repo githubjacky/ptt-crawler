@@ -117,7 +117,7 @@ class PTT_CRAWLER:
                         post_info_dict['content'] = content
                     elif index == 6: post_info_dict['author'] = post.author
                     elif index == 7: post_info_dict['money'] = post.money
-                    elif index == 8: post_info_dict['url'] = post.url
+                    elif index == 8: post_info_dict['url'] = post.web_url
                     elif index == 9: post_info_dict['ip'] = post.ip
                     elif index == 10: post_info_dict['list_date'] = post.list_date
                     elif index == 11: post_info_dict['locatoin'] = post.location
@@ -146,6 +146,7 @@ class PTT_CRAWLER:
                 )
                 if post.delete_status == PTT.data_type.post_delete_status.NOT_DELETED:
                     postList.append(post)
+            postList.reverse()
         else:
             start = index
             target_article_num = constraint[1]
