@@ -1,5 +1,6 @@
 import xlwings as xw
 import json
+from pdf_format import PDF
 
 
 def output_excel(dataList, path):
@@ -51,4 +52,20 @@ def output_json(dataList, path):
 
 
 def output_pdf(dataList, path):
-    pass
+    pdf = PDF()
+    pdf.set_margins(left=20, right=20, top=15)
+
+    pdf.set_auto_page_break(auto = True, margin = 15)  # Set auto page break
+    pdf.add_page()
+    pdf.print_header()
+    for index, dataDict in enumerate(dataList):
+        items = list(dataDict.items())
+        for item in items:
+            if item[0] == 'title':
+                pdf.paragraph_title(f'{index+1}', item[1])
+            else:
+                pdf.paragraph_body(item)
+        pdf.ln(10)
+        pdf.add_page()
+
+    pdf.output(path)

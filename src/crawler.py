@@ -93,7 +93,7 @@ class PTT_CRAWLER:
             if push.type == PTT.data_type.push_type.BOO and count_boo:
                 push_info_dict['boo_count'] += 1
             if push.type == PTT.data_type.push_type.BOO and get_boo_content:
-                push_info_dict['boo_content'].appned(push.content.replace('', ''))
+                push_info_dict['boo_content'].append(push.content.replace(' ', ''))
             if push.type == PTT.data_type.push_type.ARROW and count_arrow:
                 push_info_dict['arrow_count'] += 1
             if push.type == PTT.data_type.push_type.ARROW and get_arrow_content:
@@ -106,16 +106,14 @@ class PTT_CRAWLER:
         output_List = []
         for post in postList:
             if self.output_post_info:
-                post_info_dict = {}
+                post_info_dict = {'title': post.title}
                 for index in self.post_indexes:
-                    if index == 0: post_info_dict['board'] = post.board
-                    elif index == 1: post_info_dict['aid'] = post.aid
+                    if index == 1: post_info_dict['aid'] = post.aid
                     elif index == 2: post_info_dict['index'] = post.index
                     elif index == 3: post_info_dict['date'] = post.date
-                    elif index == 4: post_info_dict['title'] = post.title
+                    elif index == 4: post_info_dict['board'] = post.board
                     elif index == 5:
                         content = str(post.content).replace(' ', '')
-                        content = content.replace('\n', '')
                         post_info_dict['content'] = content
                     elif index == 6: post_info_dict['author'] = post.author
                     elif index == 7: post_info_dict['money'] = post.money
