@@ -17,15 +17,19 @@ def main():
     while True:
         print('-------------------------------------')
         post_infos = input('select the information that you want to know about the post(separate the indexes by space)\n' +
-            '1)aid  2)index  3)date  4)board  5)content  6)author\n' +
+            '0)pdf default  1)aid  2)index  3)date  4)board  5)content  6)author\n' +
             '7)money  8)url  9)ip  10)list_date  11)location  12)push_count\n' +
             '13)boo_count  14)arrow_count  15)push_content  16)boo_content  17)arrow_content\n> ')
-        post_infos = list(map(int, post_infos.split()))
-        post_infos.sort()
-        if post_infos[-1] > 17:
-            print('type the index out of range, please type again')
-        else:
+        if post_infos == '0':
+            post_infos = [3, 5, 15, 16, 17]
             break
+        else:
+            post_infos = list(map(int, post_infos.split()))
+            post_infos.sort()
+            if post_infos[-1] > 17:
+                print('type the index out of range, please type again')
+            else:
+                break
     push_infos = []
     while True:
         current = post_infos[-1]
@@ -60,26 +64,38 @@ def main():
     fileName = ''
     if crawler_type == '0':
         fileName += f'{board_name}'
-        while True:
-            try:
-                print('-------------------------------------')
-                constraints = input('type the constraint as the example show(multiple constrains separated by "/")\n'+
-                    'ex: keyword python/push 20/author code\n> ')
-                constraints = constraints.split('/')
-                constraintList = []
-                for constraint in constraints:
-                    constraint = constraint.split()
-                    constrain_type = constraint[0]
-                    constraint_value = constraint[1]
-                    fileName += f'_{constrain_type}'
-                    fileName += f'_{constraint_value}'
-                    if constrain_type == 'keyword': constraint_tuple = (PTT.data_type.post_search_type.KEYWORD, constraint_value)
-                    elif constrain_type == 'push': constraint_tuple = (PTT.data_type.post_search_type.PUSH, constraint_value)
-                    elif constrain_type == 'author': constraint_tuple = (PTT.data_type.post_search_type.AUTHOR, constraint_value)
+        finish = False
+        while not finish:
+            print('-------------------------------------')
+            constraints = input('type the constraint as the example show(multiple constrains separated by "/")\n'+
+                'ex: keyword python/push 20/author code\n> ')
+            constraints = constraints.split('/')
+            constraintList = []
+            for constraint in constraints:
+                constraint = constraint.split()
+                constraint_type = constraint[0]
+                constraint_value = constraint[1]
+                fileName += f'_{constraint_type}'
+                fileName += f'_{constraint_value}'
+                if constraint_type == 'keyword':
+                    constraint_tuple = (PTT.data_type.post_search_type.KEYWORD, constraint_value)
                     constraintList.append(constraint_tuple)
-                break
-            except:
-                print('type wrong constrains, please type again')
+                    finish = True
+                elif constraint_type == 'push':
+                    constraint_tuple = (PTT.data_type.post_search_type.PUSH, constraint_value)
+                    constraintList.append(constraint_tuple)
+                    finish = True
+                elif constraint_type == 'author':
+                    constraint_tuple = (PTT.data_type.post_search_type.AUTHOR, constraint_value)
+                    constraintList.append(constraint_tuple)
+                    finish = True
+                else:
+                    fileName.replace(f'_{constraint_type}', '')
+                    fileName.replace(f'_{constraint_value}', '')
+                    print('-------------------------------------')
+                    print('type wrong constrains, please type again')
+                    finish = False
+                    break
 
         print('-------------------------------------')
         limited_post = int(input('please type the number of posts that you want to limit(type 0 if you do not want to limit)\n> '))
