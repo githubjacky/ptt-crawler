@@ -7,6 +7,11 @@ python main.py
 
 1. input your ptt id and password
 2. select the board and what kinds of content you want to see(0 is the specific option according to my preference)
+    - 3)date
+    - 5)content 
+    - 15)push_content
+    - 16)boo_content
+    - 17)arrow_content
 ![screen shot](./img/01.png)
 3. select the format
 
