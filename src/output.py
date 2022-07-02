@@ -65,7 +65,7 @@ def output_pdf(dataList, path):
                 pdf.paragraph_title(f'{index+1}', item[1])
             else:
                 pdf.paragraph_body(item)
-        pdf.ln(10)
+        # pdf.ln(10)
         pdf.add_page()
 
     pdf.output(path)

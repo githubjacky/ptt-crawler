@@ -5,7 +5,7 @@ from numpy import info
 class PDF(FPDF):
     def print_header(self):
         title = '爬蟲結果'
-        self.add_font('cf', '', '..\\res\\kaiu.ttf', uni=True)
+        self.add_font('cf', '', '../res/kaiu.ttf', uni=True)
         self.set_font('cf', size=30)
         title_w = self.get_string_width(title) + 20  # calculate the width of title
         self.set_x((self.w - title_w) / 2)  # the x postion of the header
@@ -15,8 +15,7 @@ class PDF(FPDF):
         self.set_text_color(46, 52, 64)  # header text color
         self.set_line_width(1)  # thichness of frame
 
-        self.cell(title_w, 10, title, border=0, ln=1,
-            align='C', fill=1)
+        self.cell(title_w, 10, title, border=0, ln=1, align='C', fill=1)
         self.ln(10)   # line break
 
 
@@ -33,7 +32,7 @@ class PDF(FPDF):
         self.set_fill_color(129, 161, 193)  # background color
 
         chapter_title = f'{p_num}. {p_title}'
-        self.multi_cell(0, 5, chapter_title, ln=1, fill=1)
+        self.multi_cell(0, 5, chapter_title, fill=1)
         self.ln(10)
 
 
@@ -46,12 +45,12 @@ class PDF(FPDF):
             self.set_font('cf', size=12)
             self.set_fill_color(136, 192, 208)  # background color
             sub_title_w = self.get_string_width(sub_title)+3  # calculate the width of title
-            self.cell(sub_title_w, 5, sub_title, ln=1, fill=1)
+            self.cell(sub_title_w, 5, sub_title, fill=1)
             # paragraph body
             if isinstance(paragraph, list):
                 for content in paragraph:
                     self.set_text_color(59, 66, 82)
-                    self.multi_cell(0, 5, content, ln=1)
+                    self.multi_cell(0, 5, content)
             else:
                 self.set_text_color(59, 66, 82)
-                self.multi_cell(0, 5, str(paragraph), ln=1)
+                self.multi_cell(0, 5, str(paragraph))

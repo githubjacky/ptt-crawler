@@ -11,6 +11,7 @@ def main():
     userId = input('>id: ')
     userPassword = input('>password: ')
 
+
     print('-------------------------------------')
     board_name = input('what board do you want to crawl?\n> ')
 
@@ -28,6 +29,8 @@ def main():
             post_infos.sort()
             if post_infos[-1] > 17:
                 print('type the index out of range, please type again')
+            elif post_infos[1] < 0:
+                print('type the index out of range, please type again')
             else:
                 break
     push_infos = []
@@ -43,17 +46,20 @@ def main():
     if postLength != 0 and pushLength == 0:
         del push_infos
         crawler = PTT_CRAWLER(userId, userPassword, board_name, post_infos)
+        crawler.login()
     elif postLength !=0 and pushLength != 0:
         push_infos.sort()
         crawler = PTT_CRAWLER(userId, userPassword, board_name, post_infos, push_infos)
+        crawler.login()
     elif postLength == 0 and pushLength != 0:
         push_infos.sort()
         del post_infos
         crawler = PTT_CRAWLER(userId, userPassword, board_name, push_infos)
+        crawler.login()
     else:
         print('push and post arrangement error')
 
-    crawler.login()
+
     while True:
         print('-------------------------------------')
         crawler_type = input('choose the crawler type: 0)constraint 1)without constraint\n> ')
