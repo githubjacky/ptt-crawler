@@ -62,7 +62,7 @@ def output_pdf(dataList, path):
         items = list(dataDict.items())
         for item in items:
             if item[0] == 'title':
-                pdf.paragraph_title(f'{index+1}', item[1])
+                pdf.paragraph_title(f'{index+1}', f'{item[1]}\n')
             else:
                 pdf.paragraph_body(item)
         # pdf.ln(10)

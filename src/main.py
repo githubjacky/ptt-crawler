@@ -46,18 +46,16 @@ def main():
     if postLength != 0 and pushLength == 0:
         del push_infos
         crawler = PTT_CRAWLER(userId, userPassword, board_name, post_infos)
-        crawler.login()
     elif postLength !=0 and pushLength != 0:
         push_infos.sort()
         crawler = PTT_CRAWLER(userId, userPassword, board_name, post_infos, push_infos)
-        crawler.login()
     elif postLength == 0 and pushLength != 0:
         push_infos.sort()
         del post_infos
         crawler = PTT_CRAWLER(userId, userPassword, board_name, push_infos)
-        crawler.login()
     else:
         print('push and post arrangement error')
+    crawler.login()
 
 
     while True:

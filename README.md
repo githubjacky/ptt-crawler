@@ -16,16 +16,10 @@ python main.py
 3. select the format
 
 
-
-# dependencies
-- PyPtt
-- xlwings
-- fpdf
-- numpy
-
-### use the following to install the dependencies
+## dependencies
+*use your favorite virtual environment tool to install the dependencies, my choice will be the [pipenv](https://github.com/pypa/pipenv)*
 ```sh
-pip install PyPtt xlwings fpdf numpy
+pipenv install
 ```
 
 # reference
