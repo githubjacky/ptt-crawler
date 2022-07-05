@@ -4,12 +4,14 @@ from PyPtt import PTT
 
 
 def main():
-    print('-------------------------------------')
-    print('please input your id/password of ptt!')
-
-    print('-------------------------------------')
-    userId = input('>id: ')
-    userPassword = input('>password: ')
+    # print('-------------------------------------')
+    # print('please input your id/password of ptt!')
+    #
+    # print('-------------------------------------')
+    # userId = input('>id: ')
+    # userPassword = input('>password: ')
+    userId = "opottghjk00"
+    userPassword = "opottghjk00"
 
 
     print('-------------------------------------')
