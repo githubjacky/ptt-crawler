@@ -27,3 +27,4 @@ pipenv run python src/main.py
 
 # reference
 - https://github.com/PttCodingMan/PyPtt
+- [more information](https://githubjacky.github.io/content/PttCrawler/index.html)
